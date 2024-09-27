@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <main className={cn("bg-[#17181A]", "h-[1025px] overflow-hidden")}>
+    <main className={cn("bg-[#17181A]", "min-h-dvh")}>
       <section className="relative w-full">
         <div className="absolute top-80 left-24 w-[1000px] text-white z-20">
           <div className="space-y-[100px]">
@@ -42,27 +42,32 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div id="image-scroll" className="w-[841px] h-[2012px] absolute top-[165px] right-[38px] z-10">
-          <Image
-            src={ImgScroll1}
-            alt="Image Scroll 1"
-            className="absolute top-0 left-0"
-          />
-          <Image
-            src={ImgScroll2}
-            alt="Image Scroll 2"
-            className="absolute top-[604px] right-0"
-          />
-          <Image
-            src={ImgScroll3}
-            alt="Image Scroll 3"
-            className="absolute top-[1058px] left-[59px]"
-          />
-          <Image
-            src={ImgScroll4}
-            alt="Image Scroll 4"
-            className="absolute bottom-0 left-[361px]"
-          />
+        <div className="absolute top-0 right-[38px] overflow-y-auto h-dvh">
+          <div
+            id="image-scroll"
+            className="w-[841px] h-[2177px] relative z-10"
+          >
+            <Image
+              src={ImgScroll1}
+              alt="Image Scroll 1"
+              className="absolute top-[165px] left-0"
+            />
+            <Image
+              src={ImgScroll2}
+              alt="Image Scroll 2"
+              className="absolute top-[769px] right-0"
+            />
+            <Image
+              src={ImgScroll3}
+              alt="Image Scroll 3"
+              className="absolute top-[1223px] left-[59px]"
+            />
+            <Image
+              src={ImgScroll4}
+              alt="Image Scroll 4"
+              className="absolute bottom-0 left-[361px]"
+            />
+          </div>
         </div>
       </section>
 
