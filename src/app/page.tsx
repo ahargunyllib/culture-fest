@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import HeroSection from "@/containers/home/HeroSection";
 import EventSection from "@/containers/home/EventSection";
 import TeamSection from "@/containers/home/TeamSection";
+import MarqueeSection from "@/containers/home/MarqueeSection";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       <main>
         <HeroSection />
         <EventSection />
-        <TeamSection/>
+        <TeamSection />
+        <MarqueeSection />
         {/* <PartnerSection/> */}
         {/* <FaqSection /> */}
       </main>
