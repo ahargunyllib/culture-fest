@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function EventSection() {
   return (
-    <main className="h-[1025px] w-full">
+    <main className="min-h-dvh w-full">
       <section className="relative w-min top-[31px] left-[235px]">
         <div className="w-[607px] h-[336px] absolute">
           <div className="space-y-4 absolute bottom-0 z-20 w-full">
