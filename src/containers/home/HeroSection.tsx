@@ -1,3 +1,5 @@
+"use client";
+
 import ArrowRightBottom from "@/assets/svgs/home/arrow-right-bottom.svg";
 import HeroSectionBg from "@/assets/svgs/home/hero-section-bg.svg";
 import ImgScroll1 from "@/assets/svgs/home/img-scroll-1.svg";
@@ -5,11 +7,33 @@ import ImgScroll2 from "@/assets/svgs/home/img-scroll-2.svg";
 import ImgScroll3 from "@/assets/svgs/home/img-scroll-3.svg";
 import ImgScroll4 from "@/assets/svgs/home/img-scroll-4.svg";
 import { cn } from "@/lib/utils";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function HeroSection() {
+  useGSAP(() => {
+    const imageScroll = document.getElementById("image-scroll");
+
+    gsap.to(imageScroll, {
+      y: -imageScroll!.offsetHeight + window.innerHeight - 64,
+      scrollTrigger: {
+        trigger: "#home-section",
+        pin: "#home-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }, []);
+
   return (
-    <main className={cn("bg-[#17181A]", "min-h-dvh")}>
+    <main id="home-section" className={cn("bg-[#17181A]", "min-h-dvh")}>
       <section className="relative w-full">
         <div className="absolute top-80 left-24 w-[1000px] text-white z-20">
           <div className="space-y-[100px]">
@@ -42,11 +66,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute top-0 right-[38px] overflow-y-auto h-dvh">
-          <div
-            id="image-scroll"
-            className="w-[841px] h-[2177px] relative z-10"
-          >
+        <div className="h-dvh absolute top-0 right-[38px]">
+          <div id="image-scroll" className="w-[841px] h-[2177px] relative z-10">
             <Image
               src={ImgScroll1}
               alt="Image Scroll 1"
