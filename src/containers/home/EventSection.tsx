@@ -23,12 +23,11 @@ export default function EventSection() {
     const cards = gsap.utils.toArray(cardsContainer.children);
 
     const card = document.getElementById("card");
-    const cardWidth = card!.offsetWidth
+    const cardWidth = card!.offsetWidth;
 
     gsap.to(cards, {
       x: (i) => (i === 0 ? 0 : -i * cardWidth + i * 24),
-      duration: (i) =>
-        i === 0 ? 0 : -1 * (-i * cardWidth + i * 24),
+      duration: (i) => (i === 0 ? 0 : -1 * (-i * cardWidth + i * 24)),
       ease: "none",
       scrollTrigger: {
         trigger: section,
@@ -36,7 +35,6 @@ export default function EventSection() {
         start: "top top",
         end: "bottom top",
         scrub: true,
-        markers: true,
       },
     });
   }, []);
@@ -71,8 +69,48 @@ export default function EventSection() {
             <div
               id="card"
               key={index}
-              className="w-[486px] h-[502px] rounded-[32px] bg-[#1D1A1B] flex-shrink-0 border"
-            />
+              className="w-[486px] h-[502px] rounded-[32px] bg-[#1D1A1B] flex-shrink-0 border flex flex-col justify-between py-10 px-12 font-neueHaasDisplay text-white"
+            >
+              <div className="flex flex-row justify-between">
+                <p className="text-[20px]">mmm d, yyyy - mmm d, yyyy</p>
+                <p className="italic text-[20px] text-[#05D126]">Status</p>
+              </div>
+              <div className="flex flex-col gap-12">
+                <div>
+                  <h3 className="text-[70px]">Lorem Ipsum</h3>
+                  <h4 className="text-2xl">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+                  </h4>
+                </div>
+                <div className="flex flex-row justify-between">
+                  <div>
+                    <p className="text-xl">Location</p>
+                    <div className="flex flex-row">
+                      {["Tag", "Tag", "Tag"].map((tag, index) => {
+                        if (index === 0) {
+                          return (
+                            <p key={index} className="text-[#A7A7A7]">
+                              {tag}
+                            </p>
+                          );
+                        }
+
+                        return (
+                          <div key={index} className="flex flex-row">
+                            <p className="mx-1 text-[#FF4D09]">•</p>
+                            <p className="text-[#A7A7A7]">{tag}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="text-end">
+                    <p className="text-xl">999</p>
+                    <p className="text-[#FF4D09]">9 Ticket left</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
