@@ -3,6 +3,7 @@ import HeroSection from "@/containers/home/HeroSection";
 import EventSection from "@/containers/home/EventSection";
 import TeamSection from "@/containers/home/TeamSection";
 import MarqueeSection from "@/containers/home/MarqueeSection";
+import PartnerSection from "@/containers/home/PartnerSection";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <EventSection />
         <TeamSection />
         <MarqueeSection />
-        {/* <PartnerSection/> */}
+        <PartnerSection />
         {/* <FaqSection /> */}
       </main>
       {/* <Footer/> */}

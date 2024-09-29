@@ -12,24 +12,43 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function HeroSection() {
   useGSAP(() => {
     const imageScroll = document.getElementById("image-scroll");
+    const imageContainers = document.querySelectorAll("#image-container");
 
-    gsap.to(imageScroll, {
-      y: -imageScroll!.offsetHeight + window.innerHeight - 64,
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#home-section",
+        trigger: imageScroll,
         pin: "#home-section",
         start: "top top",
-        end: "bottom top",
+        end: "bottom bottom",
         scrub: true,
       },
     });
+
+    imageContainers.forEach((imageContainer, index) => {
+      tl.fromTo(
+        imageContainer,
+        {
+          y: window.innerHeight + imageContainer.clientHeight,
+        },
+        {
+          y: -window.innerHeight,
+        },
+        0
+      );
+    });
+
+    // Clean up
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
   }, []);
 
   return (
@@ -66,28 +85,49 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="h-dvh absolute top-0 right-[38px]">
-          <div id="image-scroll" className="w-[841px] h-[2177px] relative z-10">
-            <Image
-              src={ImgScroll1}
-              alt="Image Scroll 1"
-              className="absolute top-[165px] left-0"
+        <div
+          id="image-scroll"
+          className="w-[841px] h-[2177px] absolute top-0 right-[38px] z-10"
+        >
+          <div
+            id="image-container"
+            className="absolute top-[165px] left-0 bg-[#FF4D08] w-fit h-fit overflow-hidden"
+          >
+            <div
+              id="overlay"
+              className="absolute top-0 left-0 bg-[#FF4D08] opacity-50 h-full w-full"
             />
-            <Image
-              src={ImgScroll2}
-              alt="Image Scroll 2"
-              className="absolute top-[769px] right-0"
+            <Image id="image-1" src={ImgScroll1} alt="Image Scroll 1" />
+          </div>
+          <div
+            id="image-container"
+            className="absolute top-[769px] right-0 bg-[#FF4D08] w-fit h-fit overflow-hidden"
+          >
+            <div
+              id="overlay"
+              className="absolute top-0 left-0 bg-[#FF4D08] opacity-50 h-full w-full"
             />
-            <Image
-              src={ImgScroll3}
-              alt="Image Scroll 3"
-              className="absolute top-[1223px] left-[59px]"
+            <Image id="image-2" src={ImgScroll2} alt="Image Scroll 2" />
+          </div>
+          <div
+            id="image-container"
+            className="absolute top-[1223px] left-[59px] bg-[#FF4D08] w-fit h-fit overflow-hidden"
+          >
+            <div
+              id="overlay"
+              className="absolute top-0 left-0 bg-[#FF4D08] opacity-50 h-full w-full"
             />
-            <Image
-              src={ImgScroll4}
-              alt="Image Scroll 4"
-              className="absolute bottom-0 left-[361px]"
+            <Image id="image-3" src={ImgScroll3} alt="Image Scroll 3" />
+          </div>
+          <div
+            id="image-container"
+            className="absolute bottom-0 left-[361px] bg-[#FF4D08] w-fit h-fit overflow-hidden"
+          >
+            <div
+              id="overlay"
+              className="absolute top-0 left-0 bg-[#FF4D08] opacity-50 h-full w-full"
             />
+            <Image src={ImgScroll4} alt="Image Scroll 4" />
           </div>
         </div>
       </section>
